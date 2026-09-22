@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "vtex-architect-mcp": {
+      "url": "https://architectmcp.projects.vtex.com/external/mcp"
+    },
+    "vtex-developer": {
+      "command": "npx",
+      "args": ["-y", "@vtex/developer-mcp"]
+    }
+  }
+}

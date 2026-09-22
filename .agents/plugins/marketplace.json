@@ -1,0 +1,20 @@
+{
+  "name": "vtex-ai-plugins",
+  "interface": {
+    "displayName": "VTEX AI Plugins"
+  },
+  "plugins": [
+    {
+      "name": "vtex-solution-architect-agent",
+      "source": {
+        "source": "local",
+        "path": "./codex-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
