@@ -1,0 +1,55 @@
+# Generic files
+node_modules/
+dist/
+.env
+.env.*
+.vscode/
+.DS_Store
+.idea
+*.log
+*.bak
+
+# JavaScript/TypeScript
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnp/
+.pnp.js
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.venv
+Pipfile.lock
+*.egg-info/
+.eggs/
+
+# Go
+bin/
+*.exe
+*.test
+*.out
+
+# C#
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+*.app
+*.user
+.vscode/
+project.lock.json
+*.csproj.user
+
+# Rust
+debug/
+target/

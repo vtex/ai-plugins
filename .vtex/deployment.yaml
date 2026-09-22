@@ -1,0 +1,17 @@
+- name: ai-plugins
+  acronym: ai-plugins
+  description: Deploy ai-plugins application
+  build:
+    provider: dkcicd
+    pipelines:
+    - name: techdocs-v1
+      parameters:
+        entityReference: default/component/ai-plugins
+        indexFile: index.md
+        sourceDir: ./
+      when:
+      - event: push
+        source: branch
+        regex: ^(main)$
+        path:
+        - "docs/**/*"

@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ai-plugins
+  description: |
+    VTEX AI Plugins
+  annotations:
+    github.com/project-slug: vtex/ai-plugins
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: VG7H6WOP
+spec:
+  type: other
+  lifecycle: experimental
+  owner: te-0051
+  dependsOn: []
