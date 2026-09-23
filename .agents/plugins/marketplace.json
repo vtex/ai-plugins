@@ -8,7 +8,7 @@
       "name": "vtex-solution-architect-agent",
       "source": {
         "source": "local",
-        "path": "./codex-plugin"
+        "path": "./plugins/vtex-solution-architect-agent/codex"
       },
       "policy": {
         "installation": "AVAILABLE",

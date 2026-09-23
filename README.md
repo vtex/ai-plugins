@@ -13,11 +13,11 @@ Each plugin is authored once and packaged for both platforms, so System Integrat
 /plugin install vtex-solution-architect-agent@vtex-ai-plugins
 ```
 
-Or download the packaged plugin from [`claude-plugin/dist/vtex-solution-architect-agent.plugin`](./claude-plugin/dist/vtex-solution-architect-agent.plugin) and install it from **Settings → Plugins → Install from file** in the Claude desktop app.
+Or download the packaged plugin from [`plugins/vtex-solution-architect-agent/claude/dist/vtex-solution-architect-agent.plugin`](./plugins/vtex-solution-architect-agent/claude/dist/vtex-solution-architect-agent.plugin) and install it from **Settings → Plugins → Install from file** in the Claude desktop app.
 
 ### ChatGPT (Codex)
 
-Download the packaged plugin from [`codex-plugin/dist/vtex-solution-architect-agent.zip`](./codex-plugin/dist/vtex-solution-architect-agent.zip) and install it through Codex plugin support (desktop, CLI, or IDE extension).
+Download the packaged plugin from [`plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip`](./plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip) and install it through Codex plugin support (desktop, CLI, or IDE extension).
 
 Full installation, authentication, and getting-started steps: [Onboarding Guide](./docs/vtex-solution-architect-agent/onboarding-guide.md).
 
@@ -38,8 +38,8 @@ Full installation, authentication, and getting-started steps: [Onboarding Guide]
 
 ## Platforms
 
-- **Claude** (Cowork / Claude Code) — `claude-plugin/`
-- **ChatGPT** (Codex) — `codex-plugin/`
+- **Claude** (Cowork / Claude Code) — `plugins/<plugin>/claude/`
+- **ChatGPT** (Codex) — `plugins/<plugin>/codex/`
 
 ## Feedback and Support
 

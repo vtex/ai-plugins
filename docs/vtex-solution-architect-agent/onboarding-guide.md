@@ -42,7 +42,7 @@ It is distributed as plugins for **Claude** (Cowork / Claude Code) and **ChatGPT
 
 ### Claude (Cowork)
 
-1. Download the plugin file from [`claude-plugin/dist/vtex-solution-architect-agent.plugin`](../../claude-plugin/dist/vtex-solution-architect-agent.plugin).
+1. Download the plugin file from [`plugins/vtex-solution-architect-agent/claude/dist/vtex-solution-architect-agent.plugin`](../../plugins/vtex-solution-architect-agent/claude/dist/vtex-solution-architect-agent.plugin).
 2. Open the Claude desktop app (Cowork).
 3. Go to **Settings → Plugins → Install from file** (or **Customize → Plugins**).
 4. Select the `.plugin` file and follow the prompts.
@@ -57,7 +57,7 @@ It is distributed as plugins for **Claude** (Cowork / Claude Code) and **ChatGPT
 
 ### ChatGPT (Codex)
 
-1. Download the Codex plugin package from [`codex-plugin/dist/vtex-solution-architect-agent.zip`](../../codex-plugin/dist/vtex-solution-architect-agent.zip).
+1. Download the Codex plugin package from [`plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip`](../../plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip).
 2. Install it through Codex plugin support (desktop, CLI, or IDE extension).
 3. Start a **new** Codex task after install so skills and MCP tools load.
 4. Authenticate Atlas when prompted (see below), or run `codex mcp login vtex-architect-mcp`.
