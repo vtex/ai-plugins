@@ -1,5 +1,9 @@
-## ai-plugins docs
+# ai-plugins documentation
 
-This is a placeholder for the ai-plugins documentation.
+Guides for plugins published in this marketplace.
 
-When you edit this file or any other file in the docs folder, the changes will be automatically published to the ai-plugins documentation.
+## Plugins
+
+| Plugin | Docs |
+| ------ | ---- |
+| **VTEX Solution Architect Agent** | [System Integrator Onboarding](./vtex-solution-architect-agent/si-onboarding.md) |

@@ -1,6 +1,5 @@
 # Generic files
 node_modules/
-dist/
 .env
 .env.*
 .vscode/
@@ -8,6 +7,13 @@ dist/
 .idea
 *.log
 *.bak
+
+# Ignore build output except published plugin artifacts
+dist/
+!claude-plugin/dist/
+!claude-plugin/dist/**
+!codex-plugin/dist/
+!codex-plugin/dist/**
 
 # JavaScript/TypeScript
 npm-debug.log*

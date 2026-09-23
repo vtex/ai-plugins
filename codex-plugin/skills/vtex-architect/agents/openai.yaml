@@ -1,0 +1,3 @@
+interface:
+  display_name: VTEX Architect
+  short_description: Design VTEX architectures, tradeoffs, ADRs, and platform decisions.
