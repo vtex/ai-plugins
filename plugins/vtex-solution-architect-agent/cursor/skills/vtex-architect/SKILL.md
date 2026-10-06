@@ -397,7 +397,7 @@ crosses from "decide" to "document.")
 > - **vtex-developer MCP** — live documentation lookup, endpoint search, and API reference retrieval. Tools: `search_documentation`, `fetch_document`, `search_endpoints`, `get_endpoint_details`.
 > - **VTEX Architect MCP** — knowledge base search and client solution architecture files. Tools: `retrieve_context` (semantic search over the VTEX Atlas Knowledge Base for ADRs and real-world cases), `get_architecture` (fetch a client's solution architecture document by VTEX account name). Required when a specific client is mentioned.
 >
-> **MCP authentication errors:** `vtex-architect-mcp` uses OAuth. If it returns an authentication or permission error, **stop and inform the user** rather than silently answering without the required source. Ask the user to authenticate the server from Codex's MCP settings or with `codex mcp login vtex-architect-mcp`, then retry.
+> **MCP authentication errors:** `vtex-architect-mcp` uses OAuth. If it returns an authentication or permission error, **stop and inform the user** rather than silently answering without the required source. Ask the user to authenticate the server from Cursor Settings → MCP (click **Login** next to `vtex-architect-mcp`), then retry.
 
 ---
 

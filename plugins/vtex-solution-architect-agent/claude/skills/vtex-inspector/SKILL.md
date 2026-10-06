@@ -231,7 +231,20 @@ placeholder values.
 
 ## Feedback Collection
 
-After every response, ask the user for feedback. Follow this protocol:
+Offer the user the chance to give feedback at the end of the process. Follow this protocol:
+
+### Step 0 — Offer feedback (plain text, never `AskUserQuestion`)
+
+Offer feedback at the end of your answer. Immediately before the feedback question, add a one-line sources note, e.g. "*Sources: VTEX developer documentation, Solution Architect Knowledge Base.*" Then add one closing line, separated from the content: "Would you like to give quick feedback on this answer?"
+
+Sources note rules:
+
+- Name only source categories that actually contributed to the answer, using these labels: "Solution Architect Knowledge Base" (`retrieve_context` informed the answer), "VTEX developer documentation" (the `vtex-developer` tools were used), "Client architecture document" (`get_architecture` was used), "Live account data" (the `vtex-account` tools were used).
+- Never include URLs, document titles, or case IDs.
+- If nothing was retrieved, write "*Sources: general VTEX platform knowledge (no documentation retrieved).*"
+- Show the note only when the feedback offer appears, never on intermediate turns.
+
+If the user accepts (yes, sure, ok…), continue to Step 1. Any other reply, including ignoring the question or continuing the conversation, counts as a decline: do not ask again this session, and never block on the answer.
 
 ### Step 1 — Collect structured feedback
 
@@ -313,7 +326,7 @@ submit_feedback(
 
 ### Rules
 
-- Always ask for feedback — do not skip it, even for short answers.
-- If the user declines or ignores the prompt, do not ask again in the same session.
+- Always offer feedback at the end of the process (Step 0) — do not skip the offer, even for short answers. Only run Steps 1–2 if the user accepts.
+- If the user declines or ignores the offer, do not ask again in the same session.
 - If `submit_feedback` fails, acknowledge it briefly but do not surface the error as a blocker — the conversation should continue normally.
 - `issue_type` is only required when `rating` is 3 or below.
