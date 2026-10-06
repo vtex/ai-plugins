@@ -1,8 +1,8 @@
 # VTEX AI Plugins
 
-Marketplace for **VTEX AI plugins** — Claude and ChatGPT (Codex) packages that bring VTEX's architecture knowledge base, live platform documentation, and read-only account inspection into your AI assistant.
+Marketplace for **VTEX AI plugins** — Claude, ChatGPT (Codex), and Cursor packages that bring VTEX's architecture knowledge base, live platform documentation, and read-only account inspection into your AI assistant.
 
-Each plugin is authored once and packaged for both platforms, so System Integrators get the same skills whether they work in Claude or ChatGPT.
+Each plugin is authored once and packaged for each platform, so System Integrators get the same skills whether they work in Claude, ChatGPT, or Cursor.
 
 ## Quick Start
 
@@ -19,13 +19,17 @@ Or download the packaged plugin from [`plugins/vtex-solution-architect-agent/cla
 
 Download the packaged plugin from [`plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip`](./plugins/vtex-solution-architect-agent/codex/dist/vtex-solution-architect-agent.zip) and install it through Codex plugin support (desktop, CLI, or IDE extension).
 
+### Cursor
+
+This repository is a Cursor marketplace ([`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)). A Cursor team admin imports `https://github.com/vtex/ai-plugins` under **Dashboard → Plugins & MCPs**; members then open **Customize** in the sidebar, find **VTEX Solution Architect Agent**, and select **Install**. After installing, log in to `vtex-architect-mcp` from **Cursor Settings → MCP**.
+
 Full installation, authentication, and getting-started steps: [Onboarding Guide](./docs/vtex-solution-architect-agent/onboarding-guide.md).
 
 ## Available Plugins
 
 | Plugin | Platforms | Description | Docs |
 | ------ | --------- | ------------ | ---- |
-| **VTEX Solution Architect Agent** | Claude, ChatGPT (Codex) | Architecture guidance, platform expertise, and read-only account inspection for System Integrators | [Onboarding guide](./docs/vtex-solution-architect-agent/onboarding-guide.md) |
+| **VTEX Solution Architect Agent** | Claude, ChatGPT (Codex), Cursor | Architecture guidance, platform expertise, and read-only account inspection for System Integrators | [Onboarding guide](./docs/vtex-solution-architect-agent/onboarding-guide.md) |
 
 ### Skills in VTEX Solution Architect Agent
 
@@ -40,6 +44,7 @@ Full installation, authentication, and getting-started steps: [Onboarding Guide]
 
 - **Claude** (Cowork / Claude Code) — `plugins/<plugin>/claude/`
 - **ChatGPT** (Codex) — `plugins/<plugin>/codex/`
+- **Cursor** — `plugins/<plugin>/cursor/`
 
 ## Feedback and Support
 

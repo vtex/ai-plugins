@@ -1,0 +1,26 @@
+{
+  "name": "vtex-ai-plugins",
+  "owner": {
+    "name": "VTEX Professional Services"
+  },
+  "metadata": {
+    "description": "VTEX AI Plugins marketplace — Cursor plugins for the VTEX ecosystem.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "vtex-solution-architect-agent",
+      "source": "./plugins/vtex-solution-architect-agent/cursor",
+      "description": "VTEX Solution Architect — architecture guidance, VTEX documentation search, and knowledge base integration for VTEX solution architecture.",
+      "version": "1.0.0",
+      "author": {
+        "name": "VTEX Professional Services"
+      },
+      "homepage": "https://github.com/vtex/ai-plugins/blob/master/docs/vtex-solution-architect-agent/onboarding-guide.md",
+      "repository": "https://github.com/vtex/ai-plugins",
+      "keywords": ["vtex", "architecture", "platform", "mcp"],
+      "category": "productivity",
+      "tags": ["vtex", "architecture", "mcp", "platform"]
+    }
+  ]
+}
