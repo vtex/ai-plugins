@@ -6,8 +6,8 @@
   "author": {
     "name": "VTEX Professional Services"
   },
-  "homepage": "https://github.com/vtexprojects/ai-atlas-integrations/blob/master/cursor-plugin-external/README.md",
-  "repository": "https://github.com/vtexprojects/ai-atlas-integrations",
+  "homepage": "https://github.com/vtex/ai-plugins/blob/main/docs/vtex-solution-architect-agent/onboarding-guide.md",
+  "repository": "https://github.com/vtex/ai-plugins",
   "keywords": ["vtex", "architecture", "atlas", "mcp"],
   "skills": "./skills/",
   "mcpServers": "./mcp.json"
