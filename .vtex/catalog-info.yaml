@@ -9,7 +9,7 @@ metadata:
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: VG7H6WOP
 spec:
-  type: other
+  type: library
   lifecycle: experimental
   owner: te-0051
   dependsOn: []
