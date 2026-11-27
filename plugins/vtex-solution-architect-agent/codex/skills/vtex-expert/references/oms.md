@@ -12,7 +12,7 @@ Order placed
         └─► payment-approved
               └─► ready-for-handling
                     └─► handling
-                          └─► invoiced ──────────────────────► delivered (manual)
+                          └─► invoiced   (last status — delivery is tracked on the invoice, see Tracking Updates)
                                                               └─► canceled (before invoiced)
 ```
 
@@ -31,10 +31,11 @@ flow.
 | `ready-for-handling`    | Order is ready for the warehouse to start preparation (picking / packing)                             |
 | `handling`              | Warehouse has started handling the order                                                              |
 | `invoiced`              | Invoice (NF-e or equivalent) has been issued and sent to VTEX via the Invoice API                     |
-| `delivered`             | Order marked as delivered (manual or via carrier webhook)                                             |
 | `canceled`              | Order canceled; if payment was captured, a refund must be initiated separately                        |
 | `window-to-cancel`      | A configured cancellation window is active (used to allow customer self-service cancellation)         |
-| `on-order-completed`    | Terminal state for completed orders (post-delivery confirmation)                                      |
+| `on-order-completed`    | Internal step right after order creation (not a terminal or post-delivery state)                     |
+
+> There is no `delivered` order status. `invoiced` is the last step of the order workflow. Delivery is recorded per invoice in `packageAttachment.packages[].courierStatus` — see Tracking Updates.
 
 ### Status transitions you can trigger via API
 
@@ -43,7 +44,8 @@ flow.
 | → `handling`                  | POST start-handling on the order                   |
 | → `invoiced`                  | POST invoice to the order                          |
 | → `canceled`                  | POST cancellation request                          |
-| Update tracking               | POST tracking update to the invoice                |
+| Add tracking number / URL to an existing invoice | PATCH the invoice (`/invoice/{invoiceNumber}`) |
+| Update tracking status (events, delivery)        | PUT `/invoice/{invoiceNumber}/tracking`        |
 
 ---
 
@@ -77,17 +79,21 @@ when all items are covered.
 
 ## Tracking Updates
 
-After invoicing, you can add or update tracking information without changing
-the order status.
+Tracking never changes the order status: the order stays `invoiced`.
 
-- POST a tracking update to the order's invoice endpoint.
-- Include `trackingNumber`, `trackingUrl`, and `courier`.
-- The tracking update triggers a customer notification email if transactional
-  emails are configured.
+| Goal | Call |
+| ---- | ---- |
+| Send tracking together with the invoice | `POST /api/oms/pvt/orders/{orderId}/invoice` with `trackingNumber`, `trackingUrl`, `courier` |
+| Add or change tracking number / URL on an existing invoice | `PATCH /api/oms/pvt/orders/{orderId}/invoice/{invoiceNumber}` |
+| Update tracking status (events, delivery) | `PUT /api/oms/pvt/orders/{orderId}/invoice/{invoiceNumber}/tracking` with `events[]`, `isDelivered`, `deliveredDate` |
 
-For carriers that push delivery confirmation events, build a webhook receiver
-that calls the VTEX tracking API when the carrier marks the package as
-delivered.
+Where it lands in the order JSON, per invoice in `packageAttachment.packages[]`:
+
+- `trackingNumber`, `trackingUrl`, `courier`
+- `courierStatus`: `{ status, finished, deliveredDate, data[] }` — `finished: true` plus `deliveredDate` means the package was delivered; `data[]` holds the tracking events.
+- The order JSON also carries a legacy duplicate, `courrierStatus` (misspelled). Read `courierStatus`.
+
+For carriers not integrated with VTEX, the ERP, WMS, carrier or middleware must push events with the `PUT .../tracking` call. Integrations or reports that need "delivered" must read `courierStatus.finished` per package, not the order status.
 
 ---
 
@@ -202,12 +208,10 @@ Use this pattern when:
 
 ## Multi-Origin Orders (Split Fulfillment)
 
-When an order contains items from multiple warehouses, VTEX creates a single
-order with multiple **shipments**. Each shipment has its own status and
-invoice. The order's overall status reflects the aggregate of all shipments.
+An order whose items ship from different warehouses or at different times is invoiced in parts: one invoice (package) per shipment in `packageAttachment.packages[]`. There is no separate shipment entity with its own status.
 
-- Each shipment must be invoiced independently.
-- Tracking is managed per shipment.
+- Each invoice covers a subset of items; the order reaches `invoiced` when all items are covered.
+- Tracking and `courierStatus` are managed per invoice, so an order can be partially delivered (some packages `finished: true`, others not).
 - Cancellation of a subset of items creates a partial cancellation and
   requires a partial invoice adjustment.
 
@@ -223,7 +227,8 @@ Key endpoints (verify contracts with `vtex-developer` MCP):
 | List orders                     | GET    | `/api/oms/pvt/orders`                                               |
 | Start handling                  | POST   | `/api/oms/pvt/orders/{orderId}/start-handling`                      |
 | Send invoice                    | POST   | `/api/oms/pvt/orders/{orderId}/invoice`                             |
-| Update tracking                 | PUT    | `/api/oms/pvt/orders/{orderId}/invoice/{invoiceNumber}`             |
+| Add/update tracking on invoice  | PATCH  | `/api/oms/pvt/orders/{orderId}/invoice/{invoiceNumber}`             |
+| Update tracking status          | PUT    | `/api/oms/pvt/orders/{orderId}/invoice/{invoiceNumber}/tracking`    |
 | Cancel order                    | POST   | `/api/oms/pvt/orders/{orderId}/cancel`                              |
 | Get Feed v3 events              | GET    | `/api/orders/feed`                                                  |
 | Commit Feed v3 events           | POST   | `/api/orders/feed`                                                  |
